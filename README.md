@@ -1,4 +1,65 @@
-# FreeTouchDeck
+# 触摸板
+用于使用ESP32、触摸屏和BLE与Windows/macOS/Linux接口。
+# # #(用户指南)(https://github.com/DustinWatts/FreeTouchDeck/wiki)
+
+# ESP32触地得分用户
+
+确保取消注释' //#define USECAPTOUCH ' !
+如果你想使用扬声器，取消注释' //#define speakerPin 26 '
+
+如果FreeTouchDeck是预先安装的，你可以在这里找到如何设置配置器:
+https://github.com/DustinWatts/esp32-touchdown/wiki/With-FreeTouchDeck-pre-installed
+
+删除旧的克隆，使用新的
+
+###混合不同版本的文件可能会导致一些意想不到的行为!
+
+重要的是要意识到，因为这是一个测试版本，更改te代码经常发生。FreeTouchDeck。Ino和其他文件(例如数据文件夹中的文件)相互依赖，它们是一体的。因此，当您下载新版本时，请确保只使用当前下载的文件，而不是来自其他版本的文件。最好的做法是完全删除旧版本，然后下载/克隆新版本，以确保您不会意外地混合来自不同版本的文件。**下载/复制最新版本后，请使用“ESP32 Sketch data upload”再次上传“data”文件夹
+
+# Beta版本!
+
+这个版本还处于非常早期的开发阶段。很有可能，如果你没有使用确切的
+和我一样，你也会遇到问题的。但这就是这个版本的目的:找出需要什么
+使FreeTouchDeck在大多数ESP和TFT屏幕上工作。此外，还缺乏逐步编写的文档。
+
+#硬件使用
+
+我目前使用的硬件是:
+
+电阻式触控:
+-一个ESP32 DEVKIT V1 (WROOM32)(分区方案:没有OTA与2MB的应用程序和2MB的SPIFFS)
+-一个3.5寸(480x320) TFT +触摸屏，ILI9488驱动和XPT2046电阻触摸控制器
+
+电容式触摸:
+-一个ESP32 DEVKIT V1 (WROOM32)(分区方案:没有OTA与2MB的应用程序和2MB的SPIFFS)
+- 3.5寸(480x320) TFT +触摸屏，ILI9488驱动和FT6236电容触摸控制器
+
+# !-库依赖-!
+- Adafruit-GFX-Library(版本1.10.0或更高)，可通过库管理器
+- TFT_eSPI(版本2.2.14或更高)，可通过库管理器获得
+—esp32 - bly - keyboard (forked)(最新版本):https://github.com/DustinWatts/ESP32-BLE-Keyboard下载
+—ESPAsyncWebserver(最新版本)下载地址:https://github.com/me-no-dev/ESPAsyncWebServer
+—AsyncTCP(最新版本)从https://github.com/me-no-dev/AsyncTCP下载
+- ArduinoJson(版本6.16.1或更高)，可通过库管理器
+
+如果使用电容式触摸:
+—FT6236(最新版本)，下载地址:https://github.com/DustinWatts/FT6236
+
+# Combiner PCB for an ESP32 DevKit C (38-pin only) + ILI9488 Touch Module:
+
+https://github.com/DustinWatts/ESP32_TFT_Combiner
+
+# TFT_eSPI配置
+
+在编译和上传FreeTouchDeck之前。如果没有草图，你必须编辑TFT_eSPI库中包含的**user_setup.h**文件。这可以在Arduino skechtbook文件夹“libraries”下找到。如果您没有重命名TFT_eSPI库文件夹，可以在**TFT_eSPI-master**中找到文件**user_setup.h**。在这里，您必须取消对应用于硬件配置的行进行注释。例如:如果你有一个带有ILI9488驱动程序的TFT，你必须取消“Section 1”下面的注释。确保所有其他驱动程序都被注释掉了!
+
+下一节是“第二节”。这也取决于您使用的硬件。例如，对于ESP32，你必须取消注释' EDIT the PIN NUMBERS IN the LINES IN the FOLLOWING to SUIT YOUR ESP32 '下面的#define(s)。此外，如果你的TFT有黑光控制引脚可用，你必须取消注释在' #define TFT_BL '和' #define TFT_BACKLIGHT_ON '下找到的行。
+
+“第三部分”可以不用管。
+
+#帮助
+
+你可以加入我的Discord服务器，我有一个专用的# freettouchdeck频道。https://discord.gg/RE3XevS
 For interfacing with Windows/macOS/Linux using an ESP32, a touchscreen and BLE.
 
 ### [User guide](https://github.com/DustinWatts/FreeTouchDeck/wiki)
